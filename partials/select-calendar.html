@@ -1,0 +1,9 @@
+<select name="calendar">
+	<? for (var i = 0; i < calendars.length; i++) { ?>
+		<? if (selectedCalendar == calendars[i].getId()) { ?>
+			<option selected value="<?= calendars[i].getId() ?>"><?= calendars[i].getName() ?></option>
+		<? } else { ?>
+			<option value="<?= calendars[i].getId() ?>"><?= calendars[i].getName() ?></option>
+		<? } ?>
+	<? } ?>
+</select>

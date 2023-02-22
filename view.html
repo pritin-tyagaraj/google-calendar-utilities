@@ -11,15 +11,18 @@
   </head>
   <body>
     <form id="myForm" onsubmit="event.preventDefault(); google.script.run.withSuccessHandler(updatePage).handleFormSubmit(this)">
-      <select name="calendar">
-        <? for (var i = 0; i < calendars.length; i++) { ?>
-          <? if (selectedCalendar == calendars[i].getId()) { ?>
-            <option selected value="<?= calendars[i].getId() ?>"><?= calendars[i].getName() ?></option>
-          <? } else { ?>
-            <option value="<?= calendars[i].getId() ?>"><?= calendars[i].getName() ?></option>
-          <? } ?>
-        <? } ?>
-      </select>
+      <fieldset name="select-calendar">
+        <legend>Select a Google calendar to apply automation on</legend>
+        <?!= include('partials/select-calendar.html', { calendars, selectedCalendar }) ?>
+      </fieldset>
+      <fieldset name="event-colors">
+        <legend>Event Color Settings</legend>
+        <?!= include('partials/event-colors.html') ?>
+      </fieldset>
+      <fieldset name="emojifier">
+        <legend>Emojifier Settings</legend>
+        <?!= include('partials/emojifier.html') ?>
+      </fieldset>
       <button type="submit">Submit</button>
     </form>
     <div id="result"></div>
