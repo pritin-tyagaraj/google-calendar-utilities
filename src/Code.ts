@@ -1,5 +1,5 @@
 function doGet() {
-  const form = HtmlService.createTemplateFromFile("view")
+  const form = HtmlService.createTemplateFromFile("src/view")
   form.calendars = CalendarApp.getAllCalendars()
 
   const userProperties = PropertiesService.getUserProperties()
