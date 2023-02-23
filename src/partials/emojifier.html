@@ -1,1 +1,40 @@
-<p>Settings!</p>
+<script>
+    function addEmojifierRow() {
+			var table = document.getElementById("emojifierMap");
+			var row = table.insertRow(-1);
+			var keyCell = row.insertCell(0);
+			var valueCell = row.insertCell(1);
+			keyCell.innerHTML = '<input type="text" name="keyword" placeholder="Keyword">';
+			valueCell.innerHTML = '<input type="text" name="prefix" placeholder="Prefix">';
+		}
+    function removeEmojifierRow() {
+			var table = document.getElementById("emojifierMap");
+			if (table.rows.length > 1) {
+				table.deleteRow(-1);
+			}
+
+			console.log(getEmojifierFormData())
+		}
+		function getEmojifierFormData() {
+			var rows = document.getElementById("emojifierMap").querySelectorAll("tr")
+			var data = { map: {} }
+			for(var i = 0; i < rows.length; i++) {
+				var keyword = rows[i].querySelector("input[name=keyword]").value
+				var prefix = rows[i].querySelector("input[name=prefix]").value
+				data.map[keyword] = prefix
+			}
+			return data
+		}
+</script>
+<div>
+    <p>Emojifier looks for keywords your calendar events' names. If a match is found, it prefixes the event name with the corresponding emoji. The prefix doesn't have to be an emoji - you can specify any string to be prefixed.</p>
+    <table id="emojifierMap">
+        <tr>
+          <td><input type="text" name="keyword" placeholder="Keyword"></td>
+          <td><input type="text" name="prefix" placeholder="Prefix"></td>
+        </tr>
+      </table>
+			<button type="button" id="addRow" onclick="addEmojifierRow()">+</button>
+      <button type="button" id="deleteRow" onclick="removeEmojifierRow()">-</button>
+</div>
+
